@@ -1,6 +1,6 @@
-(ns quadraduoclj.core)
+(ns quadraduoclj.core
+  "Primary library namespace")
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(def ^:private base-url
+  "Intranet base url"
+  "https://api.intra.42.fr/v2/")
