@@ -20,3 +20,6 @@
    :access-token-uri *access-token-uri*
    :state (random-state :len 40)
    :scope *api-scopes*})
+
+(def ^:dynamic token
+  (atom {}))
