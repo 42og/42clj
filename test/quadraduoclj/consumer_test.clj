@@ -29,4 +29,4 @@
                 :state "1337-h4x0rz"})
           auth-endpoint (format-auth-url csm)]
       (is (= auth-endpoint
-             "https://api.intra.42.fr/oauth/authorize?client_id=null&redirect_uri=localhost&response_type=code&scope=admin&state=1337-h4x0rz")))))
+             "https://api.intra.42.fr/oauth/authorize?client_id=foo&redirect_uri=localhost&response_type=code&scope=admin&state=1337-h4x0rz")))))
