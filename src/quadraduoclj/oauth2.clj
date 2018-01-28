@@ -1,25 +1,40 @@
 (ns quadraduoclj.oauth2
   "Authentification related namespace."
-  (require [environ.core :refer [env]]
-           [clj-http.util :refer [url-encode]]
-           [clj-http.core :as http]))
+  (require [clj-http.util :refer [url-encode]]
+           [clj-http.client :as client]
+           [quadraduoclj.const :refer :all]))
 
-(def ^:public *auth-url* "https://api.intra.42.fr/oauth/authorize")
-(def ^:public *access-token-uri* "https://api.intra.42.fr/oauth/token")
-(def ^:public *api-scopes* "public")
+(def ^{:dynamic true} token
+  (atom {:value nil})) ;; Should be updatable
 
-(def ^:public oauth2-params
-  "Oauth2 Configurations.
-  State scope should be an
-  ungessable string to avoid
-  site forgery."
-  {:client-uid (env :42client-uid)
-   :client-secret (env :42client-secret)
-   :authorize-uri *auth-url*
-   :redirect-uri (env :42client-redirect-uri)
-   :access-token-uri *access-token-uri*
-   :state (random-state :len 40)
-   :scope *api-scopes*})
+(defrecord ^{:private true} Consumer
+    "Consumer factory struct"
+    [client-uid client-secret
+     authorize-uri redirect-uri
+     scope state])
 
-(def ^:dynamic token
-  (atom {}))
+(defn ^{:public true} make-consumer
+  "Consumer builder"
+  [{:keys [client-uid client-secret authorize-url
+           redirect-url scope state]}
+   :or {scope "public"
+        redirect-url "https://intra.42.fr"
+        state (java.util.UUID/randomUUID)}]
+  {:pre [(string? client-uil)]})
+
+(defn ^{:private false} format-auth-url
+  "Process Authorization For User.
+  Redirect Users To Request 42 Access.
+  Small Note: When Formatting The Scopes
+  Parameters, Be Sure To Read Above About
+  The Distinction Between Application-Level
+  And Token-Level Scopes. This Has Been
+  A Point Of Friction For Some Developers."
+  [{:keys [client-id redirect-uri scope state]
+    :or {redirect-uri "http://intra.42.fr"
+         scope "public"
+         state (str (java.util.UUID/randomUUID))}}]
+  (str (format "%s?client_id=%s&redirect_uri=%s&response_type=code&scope=%s&state="
+               *auth-url* client-id
+               (client/url-encode redirect-uri)
+               scope state)))
