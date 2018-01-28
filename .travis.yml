@@ -1,0 +1,4 @@
+os: linux
+language: clojure
+after_script:
+  - bash -ex resources/coveralls.sh
