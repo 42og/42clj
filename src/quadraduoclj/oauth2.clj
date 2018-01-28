@@ -15,12 +15,14 @@
 
 (defn ^{:public true} make-consumer
   "Consumer builder"
-  [{:keys [client-uid client-secret authorize-url
+  [{:keys [client-uid client-secret authorize-uri
            redirect-url scope state]}
    :or {scope "public"
-        redirect-url "https://intra.42.fr"
+        redirect-uri "https://intra.42.fr"
         state (java.util.UUID/randomUUID)}]
-  {:pre [(string? client-uil)]})
+  {:pre [(string? client-uil)]}
+  (Consumer. client-uid client-secret authorize-uri
+             redirect-uri scope state))
 
 (defn ^{:private false} format-auth-url
   "Process Authorization For User.

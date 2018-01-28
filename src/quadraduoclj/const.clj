@@ -1,15 +1,15 @@
 (ns quadraduoclj.const
   "Constant namespace.")
 
-(def ^:public base-url
+(def ^{:public} base-url
   "42.fr API base url"
   "https://api.intra.42.fr/v2/")
 
-(def ^:public *auth-url* "https://api.intra.42.fr/oauth/authorize")
-(def ^:public *access-token-uri* "https://api.intra.42.fr/oauth/token")
-(def ^:public *api-scopes* "public")
+(def ^{:public true} *auth-url* "https://api.intra.42.fr/oauth/authorize")
+(def ^{:public true} *access-token-uri* "https://api.intra.42.fr/oauth/token")
+(def ^{:public true} *api-scopes* "public")
 
-(def ^:public oauth2-params
+(def ^{:public true} oauth2-params
   "Oauth2 Configurations.
   State scope should be an
   ungessable string to avoid
