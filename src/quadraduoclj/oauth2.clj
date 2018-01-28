@@ -19,8 +19,8 @@
         redirect-url "https://intra.42.fr"
         state (str (java.util.UUID/randomUUID))}}]
   {:pre [(string? client-uid)]}
-  (let [csm ((Consumer. client-uid client-secret authorize-uri
-                        redirect-url scope state))]
+  (let [csm (Consumer. client-uid client-secret authorize-uri
+                       redirect-url scope state)]
     csm))
 
 (defn ^{:private false} format-auth-url
