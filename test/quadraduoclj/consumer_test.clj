@@ -1,11 +1,12 @@
 (ns quadraduoclj.consumer-test
+  "Consumer instance testing suite"
   (:require [clojure.test :refer :all]
             [quadraduoclj.oauth2 :refer :all]))
 
 (deftest protocol-instance
   (testing "The factory should be instanciated corrctly."
     (let [nonce (java.util.UUID/randomUUID)
-          csm (make-consumer
+          csm (#'quadraduoclj.oauth2/make-consumer
                {:client-uid "foo"
                 :client-secret "bar"
                 :authorize-uri "http://bullshit.org"
@@ -20,7 +21,7 @@
 
 (deftest format-auth-url-test
   (testing "Url should be corretly generated from records"
-    (let [csm (make-consumer
+    (let [csm (#'quadraduoclj.oauth2/make-consumer
                {:client-uid "foo"
                 :client-secret "bar"
                 :authorize-uri "http://bullshit.org"
