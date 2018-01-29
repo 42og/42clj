@@ -24,7 +24,7 @@
                         redirect-url scope state)]
     csm))
 
-(defn ^{:private false} format-auth-url
+(defn ^{:private true} format-auth-url
   "Process Authorization For User.
   Redirect Users To Request 42 Access."
   [consumer]
@@ -35,3 +35,10 @@
                      (:redirect-uri consumer)))
                (:scope consumer)
                (:state consumer))))
+
+(defn ^{:private false} request-auth
+  "Request for authorisation url"
+  [consumer]
+  {:pre [(record? consumer)]}
+  (let [auth-url (format-auth-url consumer)]
+    (client/get auth-url)))

@@ -28,6 +28,6 @@
                 :redirect-url "localhost"
                 :scope "admin"
                 :state "1337-h4x0rz"})
-          auth-endpoint (format-auth-url csm)]
+          auth-endpoint (#'quadraduoclj.oauth2/format-auth-url csm)]
       (is (= auth-endpoint
              "https://api.intra.42.fr/oauth/authorize?client_id=foo&redirect_uri=localhost&response_type=code&scope=admin&state=1337-h4x0rz")))))
