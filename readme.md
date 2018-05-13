@@ -1,7 +1,7 @@
-[![Dependencies Status](https://jarkeeper.com/iomonad//status.svg)](https://jarkeeper.com/iomonad/42clj)
+[![Dependencies Status](https://jarkeeper.com/42og/42clj/status.svg)](https://jarkeeper.com/42og/42clj)
 [![Clojars Project](https://img.shields.io/clojars/v/quadraduoclj.svg)](https://clojars.org/quadraduoclj)
-[![Build Status](https://travis-ci.com/iomonad/42clj.svg?token=U5HCRhEJovrFpJ9DyGzB&branch=master)](https://travis-ci.com/iomonad/42clj)
-[![Downloads](https://jarkeeper.com/iomonad/42clj/downloads.svg)](https://jarkeeper.com/iomonad/42clj)
+[![Build Status](https://travis-ci.com/42og/42clj.svg?token=U5HCRhEJovrFpJ9DyGzB&branch=master)](https://travis-ci.com/42og/42clj)
+[![Downloads](https://jarkeeper.com/42og/42clj/downloads.svg)](https://jarkeeper.com/42og/42clj)
 
 # An opinionated 42.fr API wrapper
 
